@@ -1,0 +1,120 @@
+<!-- Developed by Akash Vishwakarma in july,2023 -->
+<!-- This is just a template You can customize this as your own desire -->
+<!-- Clone it and use it for any purpose -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skytup Jee Timer</title>
+<link rel="stylesheet" href="/asset/fonts/">
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            animation: backgroundAnimation 10s infinite alternate;
+            background: url('https://skytup.epizy.com/portfolio/assets/img/hero-bg.jpg')fixed;
+            /*https://skytup.epizy.com/portfolio/assets/img/hero-bg.jpg
+            background:rgba(255, 255, 255, 0.5) url('https://media4.giphy.com/media/tVM0hQmU52iKcLI1Kk/giphy.webp?cid=6c09b952nbgn31e5u5ripz17f9ahymi5vnixh5ddydncjzqq&ep=v1_internal_gif_by_id&rid=giphy.webp&ct=g')fixed;
+            */background-size: cover;
+            background-opacity:20%;
+            background-repeat: no-repeat;
+        }
+
+         
+        @keyframes backgroundAnimation {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 0%;
+            }
+        }
+
+        #countdown-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .countdown-item {
+            font-size: 3rem;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            min-width: 60px;
+            animation: scaleUp 1s ease-in-out infinite alternate;
+        }
+
+        .countdown-label {
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+ .akash{
+               display:none;bottom:0px;height:100%; z-index:-10; opacity:50%; position:fixed;left:0px;
+         }
+    </style>
+</head>
+<body>
+<img src="https://chancrous-teaching.000webhostapp.com/uploads/av.png" class="akash">
+<h1 style="font-family:sky-font-Hindi2;color:#fff; position:absolute; width:100%;font-size:50px;text-shadow:0px 0px 10px;"> Jee mains </h1>
+<div id="countdown-container">
+<div id="days" class="countdown-item"></div>
+<div class="countdown-label">Days left</div>
+<div id="hours" class="countdown-item"></div>
+<div class="countdown-label">hour</div>
+<div id="minutes" class="countdown-item"></div>
+<div class="countdown-label">minute</div>
+<div id="seconds" class="countdown-item"></div>
+<div class="countdown-label">seconds</div>
+</div>
+<script>
+        // Function to calculate and display the countdown
+        function updateCountdown() {
+            const targetDate = new Date("2025-01-24");
+            const now = new Date();
+            const timeDifference = targetDate - now;
+
+            if (timeDifference <= 0) {
+                clearInterval(interval); // Stop updating when the target date is reached
+                document.getElementById("countdown").textContent = "Countdown expired!";
+                return;
+            }
+
+            const secondsRemaining = Math.floor((timeDifference / 1000) % 60);
+            const minutesRemaining = Math.floor((timeDifference / 1000 / 60) % 60);
+            const hoursRemaining = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+            const daysRemaining = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+            document.getElementById("days").textContent = daysRemaining;
+            document.getElementById("hours").textContent = hoursRemaining;
+            document.getElementById("minutes").textContent = minutesRemaining;
+            document.getElementById("seconds").textContent = secondsRemaining;
+        }
+
+        // Call the updateCountdown function to start the countdown
+        updateCountdown();
+
+        // Update the countdown every second
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
